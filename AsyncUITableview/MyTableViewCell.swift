@@ -10,6 +10,6 @@ import UIKit
 
 class MyTableViewCell: UITableViewCell {
 
-    @IBOutlet var img : UIImageView
-    @IBOutlet var lbl : UILabel
+    @IBOutlet var img : UIImageView!
+    @IBOutlet var lbl : UILabel!
 }
