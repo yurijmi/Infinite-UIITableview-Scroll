@@ -38,7 +38,7 @@ Infinite Scroll Indicator :
 
 ============================
 # Require
-OSX 10.9.3 and Xcode 6.x (beta for now)
+OSX 10.10+ and Xcode 7+
 
 # Swift
 ===========
