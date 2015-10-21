@@ -12,7 +12,7 @@ import Foundation
 class MyTableViewController: UITableViewController {
     
     let PageSize = 20
-    var items:[MyItem] = []
+    var items = [MyItem]()
     var isLoading = false
     @IBOutlet var MyFooterView : UIView!
     
@@ -47,7 +47,7 @@ class MyTableViewController: UITableViewController {
                 }
                 
                 //generate items
-                var arr:[MyItem] = []
+                var arr = [MyItem]()
                 for i in offset...(offset + size) {
                     arr.append(MyItem(name: "Item " + String(i)))
                 }
@@ -77,7 +77,7 @@ class MyTableViewController: UITableViewController {
                     //Instead of Reloading Table data, you can add 20 rows when table scroll is at end positoon
                     
                     for item in items {
-                        self.items += item
+                        self.items.append(item)
                     }
                     self.tableView.reloadData()
                     self.isLoading = false
@@ -90,8 +90,8 @@ class MyTableViewController: UITableViewController {
                     Add Rows at indexpath
                     */
                     for item in items {
-                        var row = self.items.count
-                        var indexPath = NSIndexPath(forRow:row,inSection:0)
+                        let row = self.items.count
+                        let indexPath = NSIndexPath(forRow:row,inSection:0)
                         self.items.append(item)
                         self.tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
                     }
@@ -102,7 +102,7 @@ class MyTableViewController: UITableViewController {
         }
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView!) {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
         let maxOffset = scrollView.contentSize.height - scrollView.frame.size.height
         if (maxOffset - offset) <= 40 {
@@ -117,14 +117,14 @@ class MyTableViewController: UITableViewController {
     override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 85;
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : MyTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MyTableViewCell
         
         //Configure the cell...
-        var imagename = UTILITY.getRandomNumberBetween(1, To: 10).description + ".png"
+        let imagename = UTILITY.getRandomNumberBetween(1, To: 10).description + ".png"
         cell.img.image = UIImage(named:imagename)
         cell.lbl.text = items[indexPath.row].name
         return cell
